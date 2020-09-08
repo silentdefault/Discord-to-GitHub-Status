@@ -2,7 +2,7 @@
  * @name DiscordGithubStatus Plugin
  * @authorId 334677994570383363
  * @authorLink https://twitter.com/SilentDefault
- * @source
+ * @source https://raw.githubusercontent.com/silentdefault/Discord-to-GitHub-Status/master/DiscordGithubStatus.plugin.js
  */
 
 module.exports = class DiscordGithubStatus {

@@ -5,7 +5,7 @@
  * @source https://raw.githubusercontent.com/silentdefault/Discord-to-GitHub-Status/master/DiscordGithubStatus.plugin.js
  */
 
-module.exports = class DiscordGithubStatus {
+ module.exports = class DiscordGithubStatus {
     customStatus = {};
     getName() { return "Discord-to-GitHub Status"; }
     getDescription() { return "Send Discord Status to your GitHub Status."; }
@@ -36,10 +36,11 @@ module.exports = class DiscordGithubStatus {
             let a = BdApi.findModuleByProps("guildPositions").customStatus;
         if (this.customStatus != a) {
             if (a != null) {
-                let emoji = (typeof a.emojiName === "undefined") ? "" : `", emoji: "` + a.emojiName;
+                var emojis = ["🧠", "💻", "📚", "🤙", "😎", "🤠", "👓", "💎", "🏆", "📍", "✅", "🎓", "🔥"];
+                let emoji = (typeof a.emojiName === "undefined") ? "" : `", emoji: "` + emojis[Math.floor(Math.random() * emojis.length)];
                 this.requestGitHub().send(JSON.stringify({ query: `mutation {changeUserStatus(input: {message: "${a.text + emoji}"}) {clientMutationId}}` }));
             } else {
-                this.requestGitHub().send(JSON.stringify({ query: `mutation {changeUserStatus(input: {message: "", emoji: ""}) {clientMutationId}}` }));
+                this.requestGitHub().send(JSON.stringify({ query: `mutation {changeUserStatus(input: {message: "Enriching the brain", emoji: "🧠"}) {clientMutationId}}` }));
             }
         }
         this.customStatus = a;
@@ -48,7 +49,7 @@ module.exports = class DiscordGithubStatus {
     requestGitHub() {
         let req = new XMLHttpRequest();
         req.open("POST", "https://api.github.com/graphql", true);
-        req.setRequestHeader("Authorization", "bearer "+this.githubPAT);
+        req.setRequestHeader("Authorization", "bearer " + this.githubPAT);
         req.onload = () => {
             if (req.status < 400) {
                 return;

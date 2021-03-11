@@ -1,5 +1,5 @@
 /**
- * @name DiscordGithubStatus Plugin
+ * @name DiscordGithubStatus
  * @authorId 334677994570383363
  * @authorLink https://twitter.com/SilentDefault
  * @source https://raw.githubusercontent.com/silentdefault/Discord-to-GitHub-Status/master/DiscordGithubStatus.plugin.js
